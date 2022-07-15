@@ -14,12 +14,20 @@ from random import randrange
 from keras.preprocessing import image
 import matplotlib.pyplot as plt
 
+project_folder = r"D:\utp\IA\proyecto"
 
 """## **CARGANDO LA RED NEURONAL ARTIFICIAL EN DISCO Y REALIZANDO PREDICCIONES**
 ---
 
 **Cargando modelo de disco:**
 """
+
+# Dimensión de las imgs a procesar
+img_width = 224
+img_height = 224
+batch_size = 40
+
+THRESHOLD=0.5
 
 # Cargando modelo desde el disco
 from keras.models import load_model
@@ -35,8 +43,8 @@ import matplotlib.pyplot as plt
 import urllib.request
 
 # Cargando imagen a predecir: 
-URL_image_rx_test = 'https://www.msdmanuals.com//-/media/manual/professional/images/p/n/e/pneumocystis_pneumonia_high_es.jpg?thn=0&sc_lang=es'
-# URL_image_rx_test = 'http://www.meddean.luc.edu/lumen/meded/medicine/pulmonar/cxr/atlas/images/71bl.jpg'
+#URL_image_rx_test = 'https://www.msdmanuals.com//-/media/manual/professional/images/p/n/e/pneumocystis_pneumonia_high_es.jpg?thn=0&sc_lang=es'
+URL_image_rx_test = 'https://faros.hsjdbcn.org/sites/default/files/styles/ficha-contenido/public/radiografia_de_torax_-_imagen_-.jpg?itok=-Nikjhh3'
 
 with urllib.request.urlopen(URL_image_rx_test) as url:
    with open('temp.jpg', 'wb') as f:
@@ -63,7 +71,7 @@ print(output)
 # Resultados
 prediction = 1 if (output >= THRESHOLD) else 0
 
-CLASSES = ['Normal', 'neumonía']
+CLASSES = ['Normal', 'Neumonía']
 
 ClassPred = CLASSES[prediction]
 ClassProb = output

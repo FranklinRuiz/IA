@@ -270,9 +270,9 @@ def plot_confusion_matrix(y_true, y_pred,
         else:
             title = 'Matriz de Confusión sin Normalizar'
 
-    # Compute confusion matrix
+    # Calcular matriz de confusión
     cm = confusion_matrix(y_true, y_pred)
-    # Only use the labels that appear in the data
+    # Utilice únicamente las etiquetas que aparecen en los datos
     classes = unique_labels(y_true, y_pred)
     if normalize:
         cm = cm.astype('float') / cm.sum(axis=1)[:, np.newaxis]
@@ -295,7 +295,7 @@ def plot_confusion_matrix(y_true, y_pred,
            ylabel='True label',
            xlabel='Predicted label')
 
-    # Rotate the tick labels and set their alignment.
+    # Gira las etiquetas de marca y establezca su alineación.
     plt.setp(ax.get_xticklabels(), rotation=45, ha="right", rotation_mode="anchor")
 
     # Loop over data dimensions and create text annotations.
